@@ -1,21 +1,24 @@
-import mysql from 'mysql2/promise';
+import mysql, { PoolOptions } from 'mysql2/promise';
 
 // Vercel serverless database configuration for Railway MySQL
-const getDbConfig = () => {
-  return {
+const getDbConfig = (): PoolOptions => {
+  const config: PoolOptions = {
     host: process.env.DB_HOST || process.env.MYSQL_HOST,
     port: parseInt(process.env.DB_PORT || process.env.MYSQL_PORT || '3306'),
     user: process.env.DB_USER || process.env.MYSQL_USER,
     password: process.env.DB_PASSWORD || process.env.MYSQL_PASSWORD,
     database: process.env.DB_NAME || process.env.MYSQL_DATABASE,
-    ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
     waitForConnections: true,
     connectionLimit: 10,
-    queueLimit: 0,
-    acquireTimeout: 60000,
-    timeout: 60000,
-    reconnect: true
+    queueLimit: 0
   };
+
+  // Add SSL configuration only for production
+  if (process.env.NODE_ENV === 'production') {
+    config.ssl = { rejectUnauthorized: false };
+  }
+
+  return config;
 };
 
 // Create connection pool

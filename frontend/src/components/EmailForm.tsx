@@ -25,8 +25,8 @@ const EmailForm: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [spamScore, setSpamScore] = useState<number | null>(null);
   const [refinedContent, setRefinedContent] = useState<{
-    subject: string;
-    body: string;
+    refinedSubject: string;
+    refinedBody: string;
     suggestions: string[];
     aiAvailable: boolean;
   } | null>(null);
@@ -95,8 +95,8 @@ const EmailForm: React.FC = () => {
     if (refinedContent) {
       setFormData(prev => ({
         ...prev,
-        subject: refinedContent.subject,
-        body: refinedContent.body
+        subject: refinedContent.refinedSubject,
+        body: refinedContent.refinedBody
       }));
       setRefinedContent(null);
     }
@@ -217,7 +217,7 @@ const EmailForm: React.FC = () => {
                       Subject:
                     </Typography>
                     <Typography variant="body2" sx={{ mb: 1, p: 1, bgcolor: 'grey.100' }}>
-                      {refinedContent.subject}
+                      {refinedContent.refinedSubject}
                     </Typography>
                   </Box>
                   
@@ -226,7 +226,7 @@ const EmailForm: React.FC = () => {
                       Body:
                     </Typography>
                     <Typography variant="body2" sx={{ mb: 1, p: 1, bgcolor: 'grey.100', whiteSpace: 'pre-wrap' }}>
-                      {refinedContent.body}
+                      {refinedContent.refinedBody}
                     </Typography>
                   </Box>
                   

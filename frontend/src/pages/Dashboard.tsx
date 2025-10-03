@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Container, Typography, Box, Grid, Paper, Card, CardContent } from '@mui/material';
+import { Container, Typography, Box, Grid, Card, CardContent } from '@mui/material';
 import { useEmail } from '../contexts/EmailContext';
 import { useAuth } from '../contexts/AuthContext';
 import EmailForm from '../components/EmailForm';

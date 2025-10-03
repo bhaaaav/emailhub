@@ -1,9 +1,7 @@
 import mysql from 'mysql2/promise';
 
-// Vercel serverless database configuration
+// Vercel serverless database configuration for Railway MySQL
 const getDbConfig = () => {
-  // For Vercel, we'll use a cloud database service
-  // You can use PlanetScale, Neon, or any MySQL-compatible service
   return {
     host: process.env.DB_HOST || process.env.MYSQL_HOST,
     port: parseInt(process.env.DB_PORT || process.env.MYSQL_PORT || '3306'),

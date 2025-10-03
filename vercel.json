@@ -7,16 +7,12 @@
       "config": {
         "distDir": "build"
       }
-    },
-    {
-      "src": "backend/src/index.ts",
-      "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "/backend/src/index.ts"
+      "dest": "/api/$1"
     },
     {
       "src": "/static/(.*)",
@@ -28,6 +24,7 @@
     }
   ],
   "env": {
-    "NODE_ENV": "production"
+    "NODE_ENV": "production",
+    "REACT_APP_API_URL": "/api"
   }
 }
